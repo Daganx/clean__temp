@@ -1,0 +1,12 @@
+{
+  "name": "clean__temp",
+  "version": "1.0.0",
+  "main": "cleanTemp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Daganx",
+  "license": "ISC",
+  "description": "A script to CleanUp your TEMP Files."
+}
