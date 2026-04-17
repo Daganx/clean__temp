@@ -1,6 +1,6 @@
 # 🧹 clean-temp
 
-**clean-temp** est un outil en ligne de commande (CLI) permettant de nettoyer facilement les fichiers temporaires sur **macOS, Linux et Windows**.
+**clean__temp** est un outil en ligne de commande (CLI) permettant de nettoyer facilement les fichiers temporaires sur **macOS, Linux et Windows**.
 Il analyse différents répertoires système et utilisateur afin d’identifier et supprimer les fichiers inutiles, libérant ainsi de l’espace disque.
 
 ---
@@ -19,100 +19,111 @@ Il analyse différents répertoires système et utilisateur afin d’identifier 
 
 ## 📦 Installation
 
-### 1. Cloner le projet
+### 🔽 Télécharger la dernière version
+
+Les binaires sont disponibles dans les **Releases** sur GitHub.
+
+👉 Télécharge le fichier correspondant à ton OS :
+
+* 🍎 `temp-cleaner-macos`
+* 🐧 `temp-cleaner-linux`
+* 🪟 `temp-cleaner.exe`
+
+---
+
+## ▶️ Utilisation
+
+### 🍎 macOS (IMPORTANT)
+
+Après téléchargement, exécute ces commandes :
 
 ```bash
-git clone https://github.com/daganx/clean__temp.git
-cd clean__temp
-```
-
-### 2. Rendre le script exécutable
-
-```bash
-chmod +x index.js
-```
-
-### 3. (Optionnel) Lier globalement
-
-```bash
-npm link
+chmod +x temp-cleaner-macos
+xattr -d com.apple.quarantine temp-cleaner-macos
+./temp-cleaner-macos
 ```
 
 ---
 
-## 🧪 Utilisation
-
-### ▶️ Lancer le nettoyage standard
+### 🐧 Linux
 
 ```bash
-clean__temp
+chmod +x temp-cleaner-linux
+./temp-cleaner-linux
 ```
-
-➡️ Analyse :
-
-* `/tmp`
-* `/var/tmp`
-* caches utilisateur
-
-➡️ Supprime uniquement les fichiers de plus de **24 heures**
 
 ---
 
-### 🔥 Mode nettoyage profond
+### 🪟 Windows
 
-```bash
-clean__temp --deep
+Double-clique simplement sur :
+
+```
+temp-cleaner.exe
 ```
 
-➡️ Analyse :
+ou via terminal :
 
-* fichiers système
-* caches utilisateur
-* caches applications
-* caches navigateurs
-
-➡️ Supprime **tous les fichiers (sans limite d’âge)**
+```bash
+temp-cleaner.exe
+```
 
 ---
 
-### 🌐 Nettoyage des navigateurs uniquement
+## 🧪 Modes disponibles
+
+### ▶️ Nettoyage standard
 
 ```bash
-clean__temp --browser
+./temp-cleaner-macos
 ```
 
-➡️ Cible :
-
-* Chrome
-* Firefox
-* Safari
+➡️ Supprime les fichiers temporaires de plus de **24 heures**
 
 ---
 
-### 👀 Mode aperçu (dry-run)
+### 🔥 Nettoyage profond
 
 ```bash
-clean__temp --dry-run
+./temp-cleaner-macos --deep
+```
+
+➡️ Supprime tous les fichiers (mode agressif)
+
+---
+
+### 🌐 Cache navigateurs uniquement
+
+```bash
+./temp-cleaner-macos --browser
+```
+
+---
+
+### 👀 Mode aperçu
+
+```bash
+./temp-cleaner-macos --dry-run
 ```
 
 ou
 
 ```bash
-clean__temp --preview
+./temp-cleaner-macos --preview
 ```
 
-➡️ Affiche les fichiers **sans les supprimer**
+➡️ Aucun fichier supprimé
 
 ---
 
-## ⚙️ Options disponibles
+## ⚙️ Options
 
-| Option      | Description                                 |
-| ----------- | ------------------------------------------- |
-| `--deep`    | Nettoyage complet (agressif)                |
-| `--browser` | Nettoyage des caches navigateurs uniquement |
-| `--dry-run` | Simulation sans suppression                 |
-| `--preview` | Alias de `--dry-run`                        |
+| Option      | Description           |
+| ----------- | --------------------- |
+| `--deep`    | Nettoyage complet     |
+| `--browser` | Nettoyage navigateurs |
+| `--dry-run` | Simulation            |
+| `--preview` | Alias de dry-run      |
 
 ---
 
@@ -120,75 +131,61 @@ clean__temp --preview
 
 Le script :
 
-1. Définit plusieurs chemins de fichiers temporaires :
+1. Analyse plusieurs dossiers :
 
-   * système
-   * utilisateur
-   * navigateurs
+   * `/tmp`, `/var/tmp`
+   * caches utilisateur
+   * caches navigateurs
    * caches applicatifs
 
-2. Analyse les fichiers :
-
-   * calcule leur taille
-   * vérifie leur ancienneté
-
-3. Affiche un résumé :
+2. Calcule :
 
    * nombre de fichiers
    * taille totale
 
-4. Demande confirmation à l’utilisateur
+3. Demande confirmation
 
-5. Supprime les fichiers sélectionnés
+4. Supprime les fichiers
 
 ---
 
 ## ⚠️ Attention
 
 * Certaines suppressions peuvent nécessiter des **droits administrateur**
-* Évite d’utiliser `--deep` sans vérifier avec `--dry-run` avant
-* Certains fichiers temporaires peuvent être recréés automatiquement par le système
+* Utilise `--dry-run` avant un `--deep`
+* Les fichiers temporaires peuvent être recréés automatiquement
 
 ---
 
 ## 🖥️ Compatibilité
 
-| OS      | Support                                          |
-| ------- | ------------------------------------------------ |
-| macOS   | ✅ Complet                                        |
-| Linux   | ✅ Partiel (selon distribution)                   |
-| Windows | ⚠️ Non natif (adaptation des chemins nécessaire) |
+| OS      | Support   |
+| ------- | --------- |
+| macOS   | ✅ Complet |
+| Linux   | ✅ Complet |
+| Windows | ✅ Complet |
 
 ---
 
-## 🛠️ Améliorations possibles
+## 📦 Releases
 
-* Support complet Windows (`AppData`, `Temp`)
-* Interface graphique (Electron / Tauri)
-* Planification automatique (cron)
-* Ajout d’un mode sécurisé (whitelist)
+Les versions compilées sont disponibles dans les **Releases GitHub**.
 
----
+Chaque release contient :
 
-## 📄 Licence
-
-MIT
-
----
-
-## 👨‍💻 Auteur
-
-Projet développé pour simplifier le nettoyage système via Node.js.
+* les binaires pour macOS / Linux / Windows
+* les mises à jour et améliorations
+* un historique des changements
 
 ---
 
 ## 💡 Exemple
 
 ```bash
-clean__temp --deep --dry-run
+./temp-cleaner-macos --deep --dry-run
 ```
 
-➡️ Analyse complète sans suppression pour voir ce qui sera nettoyé.
+➡️ Analyse complète sans suppression
 
 ---
 
@@ -199,4 +196,10 @@ N’hésite pas à ouvrir une issue ou proposer une PR.
 
 ---
 
-**clean--temp** – Nettoie ton système en quelques secondes 🚀
+## 📄 Licence
+
+MIT
+
+---
+
+**clean__temp** – Nettoie ton système en quelques secondes 🚀
