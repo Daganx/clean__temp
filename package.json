@@ -1,0 +1,14 @@
+{
+  "name": "temp-cleaner",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Nettoyeur de fichiers temporaires pour macOS",
+  "main": "temp-cleaner.js",
+  "bin": {
+    "temp-cleaner": "./temp-cleaner.js"
+  },
+  "scripts": {
+    "start": "node temp-cleaner.js",
+    "preview": "node temp-cleaner.js --dry-run"
+  }
+}
